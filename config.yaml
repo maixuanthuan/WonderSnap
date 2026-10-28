@@ -1,0 +1,47 @@
+camera:
+  index: 0            # webcam index. If the image is black, run: python check_camera.py
+  auto_find: true     # if the chosen camera is black, try other indices automatically
+  width: 1280
+  height: 720
+  fps: 30
+  fourcc: MJPG        # MJPG gives 720p on most USB webcams; set "" to disable
+  min_brightness: 8   # mean pixel value below this = "black image"
+
+particles:
+  count: 40000
+  point_size: 3.8
+  spring: 0.085
+  damping: 0.90
+  morph_duration: 1.8   # seconds for the vortex morph between wonders
+  morph_swirl: 2.6      # radians of swirl at mid-morph (0 = straight morph)
+
+tracking:
+  smoothing: 0.25
+  model_complexity: 0   # 0 = faster (recommended), 1 = more accurate
+  track_width: 480      # frames are downscaled to this width for hand tracking (big FPS gain)
+  min_hand_size: 0.035
+  max_hand_size: 0.42
+
+gesture:
+  # ext = tip-to-wrist / knuckle-to-wrist (middle, ring, pinky). Shown live in the HUD.
+  open_ratio: 1.60    # ext >= this  -> OPEN
+  fist_ratio: 1.25    # ext <= this  -> FIST
+  stable_frames: 3
+  snap_close_distance: 0.30   # thumb-index / palm width
+  snap_open_distance: 0.65
+  snap_velocity: 2.0
+  cooldown_seconds: 0.65
+
+render:
+  background_mirror: true
+  particle_alpha: 0.85
+  glow_strength: 0.8
+  object_scale: 0.9    # object size multiplier (keys + / - change it live)
+  follow_hand: false    # false = object fixed at the CENTER of the result pane (key C)
+  fixed_size: true      # true = constant size, not affected by hand distance (key S)
+  custom_colors: ["#ff6a00", "#00d4ff"]   # palette "custom": bottom colour, top colour (any hex)
+  palette: auto         # auto | ocean | fire | emerald | sunset | violet | gold | ice | neon | aurora | candy | lava | sakura | mint | galaxy | lime | blood | silver | custom | rainbow (key P)
+  follow_gain: 0.6      # how far the object moves when the hand moves (0..1)
+  camera_behind_result: false   # true = show the camera image behind the AR object (key B)
+  shockwave_duration: 0.65
+  transition_duration: 1.8   # energy flash/turbulence length, keep ~ morph_duration
